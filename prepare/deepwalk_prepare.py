@@ -28,17 +28,17 @@ def load_data(path):
 print('加载数据')
 if IS_TRAIN:
     if IS_Last_Month:
-        train_sessions = load_data('/home/niejianfei/otto/CV/data/*_parquet/*')
+        train_sessions = load_data('/home/kangqiman/otto/CV/data/*_parquet/*')
         print(train_sessions)
     else:
-        train_sessions = load_data('/home/niejianfei/otto/CV/data/test_parquet/*')
+        train_sessions = load_data('/home/kangqiman/otto/CV/data/test_parquet/*')
         print(train_sessions)
 else:
     if IS_Last_Month:
-        train_sessions = load_data('/home/niejianfei/otto/LB/data/*_parquet/*')
+        train_sessions = load_data('/home/kangqiman/otto/LB/data/*_parquet/*')
         print(train_sessions)
     else:
-        train_sessions = load_data('/home/niejianfei/otto/LB/data/test_parquet/*')
+        train_sessions = load_data('/home/kangqiman/otto/LB/data/test_parquet/*')
         print(train_sessions)
 
 print('开始排序')
@@ -103,11 +103,11 @@ model = Word2Vec(sentences, vector_size=64, sg=1, window=5, min_count=1, hs=1, n
 # 保存模型
 if IS_TRAIN:
     if IS_Last_Month:
-        model.wv.save_word2vec_format('/home/niejianfei/otto/CV/preprocess/deepwalk_last_month.w2v', binary=False)
+        model.wv.save_word2vec_format('/home/kangqiman/otto/CV/preprocess/deepwalk_last_month.w2v', binary=False)
     else:
-        model.wv.save_word2vec_format('/home/niejianfei/otto/CV/preprocess/deepwalk_last_week.w2v', binary=False)
+        model.wv.save_word2vec_format('/home/kangqiman/otto/CV/preprocess/deepwalk_last_week.w2v', binary=False)
 else:
     if IS_Last_Month:
-        model.wv.save_word2vec_format('/home/niejianfei/otto/LB/preprocess/deepwalk_last_month.w2v', binary=False)
+        model.wv.save_word2vec_format('/home/kangqiman/otto/LB/preprocess/deepwalk_last_month.w2v', binary=False)
     else:
-        model.wv.save_word2vec_format('/home/niejianfei/otto/LB/preprocess/deepwalk_last_week.w2v', binary=False)
+        model.wv.save_word2vec_format('/home/kangqiman/otto/LB/preprocess/deepwalk_last_week.w2v', binary=False)
