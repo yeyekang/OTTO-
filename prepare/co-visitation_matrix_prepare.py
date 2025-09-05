@@ -33,12 +33,12 @@ data_cache = {}
 type_labels = {'clicks': 0, 'carts': 1, 'orders': 2}
 if IS_TRAIN:
     # glob模块用来查找文件目录和文件，并将搜索的到的结果返回到一个列表中
-    files = glob.glob('/home/niejianfei/otto/CV/data/*_parquet/*')
+    files = glob.glob('/home/kangqiman/otto/CV/data/*_parquet/*')
     # 存到字典里面存到cpu的RAM里面，字典的键是文件路径，值是对应路径文件生成的dataframe
     for f in files: data_cache[f] = read_file_to_cache(f)
 else:
     # glob模块用来查找文件目录和文件，并将搜索的到的结果返回到一个列表中
-    files = glob.glob('/home/niejianfei/otto/LB/data/*_parquet/*')
+    files = glob.glob('/home/kangqiman/otto/LB/data/*_parquet/*')
     # 存到字典里面存到cpu的RAM里面，字典的键是文件路径，值是对应路径文件生成的dataframe
     for f in files: data_cache[f] = read_file_to_cache(f)
 
@@ -138,14 +138,14 @@ for PART in range(DISK_PIECES):  # 一次循环计算150个文件中的1/4 个it
     print(tmp)
     # SAVE PART TO DISK (convert to pandas first uses less memory)
     if IS_TRAIN:
-        tmp.to_pandas().to_parquet(f'/home/niejianfei/otto/CV/preprocess/top_15_carts_orders_v{VER}_{PART}.pqt')
+        tmp.to_pandas().to_parquet(f'/home/kangqiman/otto/CV/preprocess/top_15_carts_orders_v{VER}_{PART}.pqt')
     else:
         if use_all_data:
             tmp.to_pandas().to_parquet(
-                f'/home/niejianfei/otto/LB/preprocess/all_data_top_15_carts_orders_v{VER}_{PART}.pqt')
+                f'/home/kangqiman/otto/LB/preprocess/all_data_top_15_carts_orders_v{VER}_{PART}.pqt')
         else:
             tmp.to_pandas().to_parquet(
-                f'/home/niejianfei/otto/LB/preprocess/top_15_carts_orders_v{VER}_{PART}.pqt')
+                f'/home/kangqiman/otto/LB/preprocess/top_15_carts_orders_v{VER}_{PART}.pqt')
 
 # 2."Buy2Buy" Co-visitation Matrix
 # USE SMALLEST DISK_PIECES POSSIBLE WITHOUT MEMORY ERROR
@@ -221,13 +221,13 @@ for PART in range(DISK_PIECES):
     tmp = tmp.loc[tmp.n < 50]
     # SAVE PART TO DISK (convert to pandas first uses less memory)
     if IS_TRAIN:
-        tmp.to_pandas().to_parquet(f'/home/niejianfei/otto/CV/preprocess/top_15_buy2buy_v{VER}_{PART}.pqt')
+        tmp.to_pandas().to_parquet(f'/home/kangqiman/otto/CV/preprocess/top_15_buy2buy_v{VER}_{PART}.pqt')
     else:
         if use_all_data:
             tmp.to_pandas().to_parquet(
-                f'/home/niejianfei/otto/LB/preprocess/all_data_top_15_buy2buy_v{VER}_{PART}.pqt')
+                f'/home/kangqiman/otto/LB/preprocess/all_data_top_15_buy2buy_v{VER}_{PART}.pqt')
         else:
-            tmp.to_pandas().to_parquet(f'/home/niejianfei/otto/LB/preprocess/top_15_buy2buy_v{VER}_{PART}.pqt')
+            tmp.to_pandas().to_parquet(f'/home/kangqiman/otto/LB/preprocess/top_15_buy2buy_v{VER}_{PART}.pqt')
 
 # 3."Clicks" Co-visitation Matrix - Time Weighted
 # USE SMALLEST DISK_PIECES POSSIBLE WITHOUT MEMORY ERROR
@@ -303,10 +303,10 @@ for PART in range(DISK_PIECES):
 
     # SAVE PART TO DISK (convert to pandas first uses less memory)
     if IS_TRAIN:
-        tmp.to_pandas().to_parquet(f'/home/niejianfei/otto/CV/preprocess/top_20_clicks_v{VER}_{PART}.pqt')
+        tmp.to_pandas().to_parquet(f'/home/kangqiman/otto/CV/preprocess/top_20_clicks_v{VER}_{PART}.pqt')
     else:
         if use_all_data:
             tmp.to_pandas().to_parquet(
-                f'/home/niejianfei/otto/LB/preprocess/all_data_top_20_clicks_v{VER}_{PART}.pqt')
+                f'/home/kangqiman/otto/LB/preprocess/all_data_top_20_clicks_v{VER}_{PART}.pqt')
         else:
-            tmp.to_pandas().to_parquet(f'/home/niejianfei/otto/LB/preprocess/top_20_clicks_v{VER}_{PART}.pqt')
+            tmp.to_pandas().to_parquet(f'/home/kangqiman/otto/LB/preprocess/top_20_clicks_v{VER}_{PART}.pqt')
