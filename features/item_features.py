@@ -350,15 +350,15 @@ if __name__ == '__main__':
         stage = 'CV'
     else:
         stage = 'LB'
-    input_path = f'/home/niejianfei/otto/{stage}/data/*_parquet/*'
-    input_path2 = f'/home/niejianfei/otto/{stage}/data/test_parquet/*'
-    output_path = f'/home/niejianfei/otto/{stage}/preprocess/item_features.pqt'
-    output_path1 = f'/home/niejianfei/otto/{stage}/preprocess/add_item_features.pqt'
+    input_path = f'/home/kangqiman/otto/{stage}/data/*_parquet/*'
+    input_path2 = f'/home/kangqiman/otto/{stage}/data/test_parquet/*'
+    output_path = f'/home/kangqiman/otto/{stage}/preprocess/item_features.pqt'
+    output_path1 = f'/home/kangqiman/otto/{stage}/preprocess/add_item_features.pqt'
     item_features(input_path, output_path)
     add_item_features(input_path, input_path2, output_path1)
 
-    input_path3 = f'/home/niejianfei/otto/{stage}/data/train_parquet/*'
-    output_path2 = f'/home/niejianfei/otto/{stage}/preprocess/click_cart_item_features.pqt'
-    output_path3 = f'/home/niejianfei/otto/{stage}/preprocess/click_order_item_features.pqt'
-    output_path4 = f'/home/niejianfei/otto/{stage}/preprocess/cart_order_item_features.pqt'
+    input_path3 = f'/home/kangqiman/otto/{stage}/data/train_parquet/*'
+    output_path2 = f'/home/kangqiman/otto/{stage}/preprocess/click_cart_item_features.pqt'
+    output_path3 = f'/home/kangqiman/otto/{stage}/preprocess/click_order_item_features.pqt'
+    output_path4 = f'/home/kangqiman/otto/{stage}/preprocess/cart_order_item_features.pqt'
     trans_time_span_item_features(input_path3, output_path2, output_path3, output_path4)
