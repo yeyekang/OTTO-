@@ -32,7 +32,7 @@ def calculate_cf_u2i_similarity(string, dic):
 # 计算候选aid与user序列co_visitation矩阵的权重之和
 def cf_u2i_similarity(stage, candidate_type, start, end):
     print('开始读取数据！！！')
-    valid = load_validate(f'/home/niejianfei/otto/{stage}/data/test_parquet/*')
+    valid = load_validate(f'/home/kangqiman/otto/{stage}/data/test_parquet/*')
     print(valid)
     print('开始筛选')
 
@@ -64,11 +64,11 @@ def cf_u2i_similarity(stage, candidate_type, start, end):
     print('click')
     VER = 6
     print(VER)
-    dic_click = pd.read_parquet(f'/home/niejianfei/otto/{stage}/preprocess/top_20_clicks_v{VER}_0.pqt')
+    dic_click = pd.read_parquet(f'/home/kangqiman/otto/{stage}/preprocess/top_20_clicks_v{VER}_0.pqt')
     DISK_PIECES = 4
     for k in range(1, DISK_PIECES):
         dic_click = dic_click.append(
-            pd.read_parquet(f'/home/niejianfei/otto/{stage}/preprocess/top_20_clicks_v{VER}_{k}.pqt'))
+            pd.read_parquet(f'/home/kangqiman/otto/{stage}/preprocess/top_20_clicks_v{VER}_{k}.pqt'))
 
     dic_click['aids1'] = dic_click['aid_x'].astype('str') + ' ' + dic_click['aid_y'].astype('str')
     dic_click['aids2'] = dic_click['aid_y'].astype('str') + ' ' + dic_click['aid_x'].astype('str')
@@ -89,11 +89,11 @@ def cf_u2i_similarity(stage, candidate_type, start, end):
     print('0 532022242' in dic_click)
 
     print('hot')
-    dic_hot = pd.read_parquet(f'/home/niejianfei/otto/{stage}/preprocess/top_15_carts_orders_v{VER}_0.pqt')
+    dic_hot = pd.read_parquet(f'/home/kangqiman/otto/{stage}/preprocess/top_15_carts_orders_v{VER}_0.pqt')
     DISK_PIECES = 4
     for k in range(1, DISK_PIECES):
         dic_hot = dic_hot.append(
-            pd.read_parquet(f'/home/niejianfei/otto/{stage}/preprocess/top_15_carts_orders_v{VER}_{k}.pqt'))
+            pd.read_parquet(f'/home/kangqiman/otto/{stage}/preprocess/top_15_carts_orders_v{VER}_{k}.pqt'))
 
     dic_hot['aids1'] = dic_hot['aid_x'].astype('str') + ' ' + dic_hot['aid_y'].astype('str')
     dic_hot['aids2'] = dic_hot['aid_y'].astype('str') + ' ' + dic_hot['aid_x'].astype('str')
@@ -114,7 +114,7 @@ def cf_u2i_similarity(stage, candidate_type, start, end):
     print('0 532022242' in dic_hot)
 
     print('buys')
-    dic_buys = pd.read_parquet(f'/home/niejianfei/otto/{stage}/preprocess/top_15_buy2buy_v{VER}_0.pqt')
+    dic_buys = pd.read_parquet(f'/home/kangqiman/otto/{stage}/preprocess/top_15_buy2buy_v{VER}_0.pqt')
     print(dic_buys)
 
     dic_buys['aids1'] = dic_buys['aid_x'].astype('str') + ' ' + dic_buys['aid_y'].astype('str')
@@ -139,7 +139,7 @@ def cf_u2i_similarity(stage, candidate_type, start, end):
         # 只导入训练数据
         print('开始导入数据')
         for i in range(start, end):
-            path = f"/home/niejianfei/otto/{stage}/candidates/candidates_{t[0:-1]}_features_data/candidate_{t[0:-1]}_{i}.pqt"
+            path = f"/home/kangqiman/otto/{stage}/candidates/candidates_{t[0:-1]}_features_data/candidate_{t[0:-1]}_{i}.pqt"
             print(f'第{i + 1}块数据')
             chunk = pd.read_parquet(path)
             print(path)
@@ -207,7 +207,7 @@ def calculate_cf_u2i_similarity_tail(string, dic):
 # 计算候选aid与user序列co_visitation矩阵的权重之和
 def cf_u2i_similarity_tail(stage, candidate_type, start, end):
     print('开始读取数据！！！')
-    valid = load_validate(f'/home/niejianfei/otto/{stage}/data/test_parquet/*')
+    valid = load_validate(f'/home/kangqiman/otto/{stage}/data/test_parquet/*')
     print(valid)
     print('开始筛选')
 
@@ -239,11 +239,11 @@ def cf_u2i_similarity_tail(stage, candidate_type, start, end):
     print('click')
     VER = 6
     print(VER)
-    dic_click = pd.read_parquet(f'/home/niejianfei/otto/{stage}/preprocess/top_20_clicks_v{VER}_0.pqt')
+    dic_click = pd.read_parquet(f'/home/kangqiman/otto/{stage}/preprocess/top_20_clicks_v{VER}_0.pqt')
     DISK_PIECES = 4
     for k in range(1, DISK_PIECES):
         dic_click = dic_click.append(
-            pd.read_parquet(f'/home/niejianfei/otto/{stage}/preprocess/top_20_clicks_v{VER}_{k}.pqt'))
+            pd.read_parquet(f'/home/kangqiman/otto/{stage}/preprocess/top_20_clicks_v{VER}_{k}.pqt'))
 
     dic_click['aids1'] = dic_click['aid_x'].astype('str') + ' ' + dic_click['aid_y'].astype('str')
     dic_click['aids2'] = dic_click['aid_y'].astype('str') + ' ' + dic_click['aid_x'].astype('str')
@@ -264,11 +264,11 @@ def cf_u2i_similarity_tail(stage, candidate_type, start, end):
     print('0 532022242' in dic_click)
 
     print('hot')
-    dic_hot = pd.read_parquet(f'/home/niejianfei/otto/{stage}/preprocess/top_15_carts_orders_v{VER}_0.pqt')
+    dic_hot = pd.read_parquet(f'/home/kangqiman/otto/{stage}/preprocess/top_15_carts_orders_v{VER}_0.pqt')
     DISK_PIECES = 4
     for k in range(1, DISK_PIECES):
         dic_hot = dic_hot.append(
-            pd.read_parquet(f'/home/niejianfei/otto/{stage}/preprocess/top_15_carts_orders_v{VER}_{k}.pqt'))
+            pd.read_parquet(f'/home/kangqiman/otto/{stage}/preprocess/top_15_carts_orders_v{VER}_{k}.pqt'))
 
     dic_hot['aids1'] = dic_hot['aid_x'].astype('str') + ' ' + dic_hot['aid_y'].astype('str')
     dic_hot['aids2'] = dic_hot['aid_y'].astype('str') + ' ' + dic_hot['aid_x'].astype('str')
@@ -289,7 +289,7 @@ def cf_u2i_similarity_tail(stage, candidate_type, start, end):
     print('0 532022242' in dic_hot)
 
     print('buys')
-    dic_buys = pd.read_parquet(f'/home/niejianfei/otto/{stage}/preprocess/top_15_buy2buy_v{VER}_0.pqt')
+    dic_buys = pd.read_parquet(f'/home/kangqiman/otto/{stage}/preprocess/top_15_buy2buy_v{VER}_0.pqt')
     print(dic_buys)
 
     dic_buys['aids1'] = dic_buys['aid_x'].astype('str') + ' ' + dic_buys['aid_y'].astype('str')
@@ -314,7 +314,7 @@ def cf_u2i_similarity_tail(stage, candidate_type, start, end):
         # 只导入训练数据
         print('开始导入数据')
         for i in range(start, end):
-            path = f"/home/niejianfei/otto/{stage}/candidates/candidates_{t[0:-1]}_features_data/candidate_{t[0:-1]}_{i}.pqt"
+            path = f"/home/kangqiman/otto/{stage}/candidates/candidates_{t[0:-1]}_features_data/candidate_{t[0:-1]}_{i}.pqt"
             print(f'第{i + 1}块数据')
             chunk = pd.read_parquet(path)
             print(path)
