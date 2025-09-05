@@ -16,10 +16,10 @@ def load_data(path):
 
 
 def user_item_features(stage, candidate_type):
-    valid = load_data(f'/home/niejianfei/otto/{stage}/data/test_parquet/*')
+    valid = load_data(f'/home/kangqiman/otto/{stage}/data/test_parquet/*')
     for t in candidate_type:
         print('读取candidates！！！')
-        candidates = pd.read_parquet(f'/home/niejianfei/otto/{stage}/candidates/candidates_{t}.pqt').reset_index(
+        candidates = pd.read_parquet(f'/home/kangqiman/otto/{stage}/candidates/candidates_{t}.pqt').reset_index(
             drop=True)
         candidates = candidates.sort_values('session', ascending=True)
         print(candidates)
@@ -60,7 +60,7 @@ def user_item_features(stage, candidate_type):
         item_ordered_features = item_ordered_features.astype('float32')
 
         print("开始聚合数据！！！")
-        item_features = pd.read_parquet(f'/home/niejianfei/otto/{stage}/preprocess/item_features.pqt')
+        item_features = pd.read_parquet(f'/home/kangqiman/otto/{stage}/preprocess/item_features.pqt')
 
         chunk = 8
         size = candidates.shape[0] + 200
@@ -71,7 +71,7 @@ def user_item_features(stage, candidate_type):
         # valid['user_item_within'] = 1
         print(valid)
 
-        user_features = pd.read_parquet(f'/home/niejianfei/otto/{stage}/preprocess/user_features.pqt')
+        user_features = pd.read_parquet(f'/home/kangqiman/otto/{stage}/preprocess/user_features.pqt')
         valid = valid.merge(user_features, left_on='session', right_index=True, how='left').fillna(-1000)
 
         valid['sec_to_session_start'] = valid['ts'] - valid['user_min_ts']
@@ -113,7 +113,7 @@ def user_item_features(stage, candidate_type):
             print(temp_candidates)
 
             temp_candidates.to_parquet(
-                f"/home/niejianfei/otto/{stage}/candidates/candidates_{candidate_type[0:-1]}_features_data/candidate_{candidate_type[0:-1]}_{i}.pqt")
+                f"/home/kangqiman/otto/{stage}/candidates/candidates_{candidate_type[0:-1]}_features_data/candidate_{candidate_type[0:-1]}_{i}.pqt")
             print(temp_candidates)
             t += len(temp_candidates)
             print(f'第{i+1}块数据量:', len(temp_candidates))
