@@ -35,7 +35,7 @@ def calculate_deepwalk_similarity(string, model):
 #  deepwalk,i2i相似度buys和clicks相似度的mean和max
 def deepwalk_i2i_similarity1(stage, candidate_type, start, end):
     print('开始读取数据！！！')
-    valid = load_validate(f'/home/niejianfei/otto/{stage}/data/test_parquet/*')
+    valid = load_validate(f'/home/kangqiman/otto/{stage}/data/test_parquet/*')
     print(valid)
     print('开始筛选buys')
     valid1 = valid[valid['type'] != 0]
@@ -64,13 +64,13 @@ def deepwalk_i2i_similarity1(stage, candidate_type, start, end):
 
     print('开始读取词向量！！')
     word2vec_last_month = gensim.models.KeyedVectors.load_word2vec_format(
-        f'/home/niejianfei/otto/{stage}/preprocess/deepwalk_last_month.w2v',
+        f'/home/kangqiman/otto/{stage}/preprocess/deepwalk_last_month.w2v',
         binary=False)
     for t in candidate_type:
         # 只导入训练数据
         print('开始导入数据')
         for i in range(start, end):
-            path = f"/home/niejianfei/otto/{stage}/candidates/candidates_{t[0:-1]}_features_data/candidate_{t[0:-1]}_{i}.pqt"
+            path = f"/home/kangqiman/otto/{stage}/candidates/candidates_{t[0:-1]}_features_data/candidate_{t[0:-1]}_{i}.pqt"
             print(f'第{i + 1}块数据')
             chunk = pd.read_parquet(path)
             print(path)
@@ -113,7 +113,7 @@ def deepwalk_i2i_similarity1(stage, candidate_type, start, end):
 #  deepwalk,i2i相似度orders和carts相似度的mean和max
 def deepwalk_i2i_similarity2(stage, candidate_type, start, end):
     print('开始读取数据！！！')
-    valid = load_validate(f'/home/niejianfei/otto/{stage}/data/test_parquet/*')
+    valid = load_validate(f'/home/kangqiman/otto/{stage}/data/test_parquet/*')
     print(valid)
     print('开始筛选buys')
     valid1 = valid[valid['type'] == 2]
@@ -142,13 +142,13 @@ def deepwalk_i2i_similarity2(stage, candidate_type, start, end):
 
     print('开始读取词向量！！')
     word2vec_last_month = gensim.models.KeyedVectors.load_word2vec_format(
-        f'/home/niejianfei/otto/{stage}/preprocess/deepwalk_last_month.w2v',
+        f'/home/kangqiman/otto/{stage}/preprocess/deepwalk_last_month.w2v',
         binary=False)
     for t in candidate_type:
         # 只导入训练数据
         print('开始导入数据')
         for i in range(start, end):
-            path = f"/home/niejianfei/otto/{stage}/candidates/candidates_{t[0:-1]}_features_data/candidate_{t[0:-1]}_{i}.pqt"
+            path = f"/home/kangqiman/otto/{stage}/candidates/candidates_{t[0:-1]}_features_data/candidate_{t[0:-1]}_{i}.pqt"
             print(f'第{i + 1}块数据')
             chunk = pd.read_parquet(path)
             print(path)
@@ -207,7 +207,7 @@ def calculate_deepwalk_similarity_tail(string, model):
 
 def deepwalk_i2i_similarity_tail(stage, candidate_type, start, end):
     print('开始读取数据！！！')
-    valid = load_validate(f'/home/niejianfei/otto/{stage}/data/test_parquet/*')
+    valid = load_validate(f'/home/kangqiman/otto/{stage}/data/test_parquet/*')
     print(valid)
     print('开始筛选')
 
@@ -236,13 +236,13 @@ def deepwalk_i2i_similarity_tail(stage, candidate_type, start, end):
     print(sentences_df1)
 
     print('开始读取词向量！！')
-    word2vec_last_month = gensim.models.KeyedVectors.load_word2vec_format(f'/home/niejianfei/otto/{stage}/preprocess/deepwalk_last_month.w2v',
+    word2vec_last_month = gensim.models.KeyedVectors.load_word2vec_format(f'/home/kangqiman/otto/{stage}/preprocess/deepwalk_last_month.w2v',
                                                                           binary=False)
     for t in candidate_type:
         # 只导入训练数据
         print('开始导入数据')
         for i in range(start, end):
-            path = f"/home/niejianfei/otto/{stage}/candidates/candidates_{t[0:-1]}_features_data/candidate_{t[0:-1]}_{i}.pqt"
+            path = f"/home/kangqiman/otto/{stage}/candidates/candidates_{t[0:-1]}_features_data/candidate_{t[0:-1]}_{i}.pqt"
             print(f'第{i + 1}块数据')
             chunk = pd.read_parquet(path)
             print(path)
@@ -302,7 +302,7 @@ def calculate_deepwalk_u2i_similarity(string, model):
 #  deepwalk,u2i相似度orders和carts相似度的mean和max
 def deepwalk_u2i_similarity(stage, candidate_type, start, end):
     print('开始读取数据！！！')
-    valid = load_validate(f'/home/niejianfei/otto/{stage}/data/test_parquet/*')
+    valid = load_validate(f'/home/kangqiman/otto/{stage}/data/test_parquet/*')
     print(valid)
 
     print('开始筛选order')
@@ -351,13 +351,13 @@ def deepwalk_u2i_similarity(stage, candidate_type, start, end):
     print(sentences_df2)
 
     print('开始读取词向量！！')
-    word2vec_last_month = gensim.models.KeyedVectors.load_word2vec_format('/home/niejianfei/deepwalk_last_month.w2v',
+    word2vec_last_month = gensim.models.KeyedVectors.load_word2vec_format('/home/kangqiman/deepwalk_last_month.w2v',
                                                                           binary=False)
     for t in candidate_type:
         # 只导入训练数据
         print('开始导入数据')
         for i in range(start, end):
-            path = f"/home/niejianfei/otto/{stage}/candidates/candidates_{t[0:-1]}_features_data/candidate_{t[0:-1]}_{i}.pqt"
+            path = f"/home/kangqiman/otto/{stage}/candidates/candidates_{t[0:-1]}_features_data/candidate_{t[0:-1]}_{i}.pqt"
             print(f'第{i + 1}块数据')
             chunk = pd.read_parquet(path)
             print(path)
@@ -428,7 +428,7 @@ def calculate_prone_similarity(string, model, aid_num_dict):
 #  prone,i2i相似度buys和clicks相似度的mean和max
 def prone_i2i_similarity(stage, candidate_type, start, end):
     print('开始读取数据！！！')
-    valid = load_validate(f'/home/niejianfei/otto/{stage}/data/test_parquet/*')
+    valid = load_validate(f'/home/kangqiman/otto/{stage}/data/test_parquet/*')
     print(valid)
     print('开始筛选')
     valid1 = valid[valid['type'] != 0]
@@ -457,11 +457,11 @@ def prone_i2i_similarity(stage, candidate_type, start, end):
 
     print('开始读取词向量！！')
     proNE_last_month = gensim.models.KeyedVectors.load_word2vec_format(
-        f"/home/niejianfei/otto/{stage}/preprocess/proNE_last_month_enhanced.emb",
+        f"/home/kangqiman/otto/{stage}/preprocess/proNE_last_month_enhanced.emb",
         binary=False)
 
     print("开始读取aim_num映射文件！！！")
-    f_read = open(f'/home/niejianfei/otto/{stage}/preprocess/aid_num_dict.pkl', 'rb')
+    f_read = open(f'/home/kangqiman/otto/{stage}/preprocess/aid_num_dict.pkl', 'rb')
     aid_num_dict = pickle.load(f_read)
     f_read.close()
     print('输出', aid_num_dict[0])
@@ -471,7 +471,7 @@ def prone_i2i_similarity(stage, candidate_type, start, end):
         # 只导入训练数据
         print('开始导入数据')
         for i in range(start, end):
-            path = f"/home/niejianfei/otto/{stage}/candidates/candidates_{t[0:-1]}_features_data/candidate_{t[0:-1]}_{i}.pqt"
+            path = f"/home/kangqiman/otto/{stage}/candidates/candidates_{t[0:-1]}_features_data/candidate_{t[0:-1]}_{i}.pqt"
             print(f'第{i + 1}块数据')
             chunk = pd.read_parquet(path)
             print(path)
@@ -535,7 +535,7 @@ def calculate_prone_similarity_tail(string, model, aid_num_dict):
 
 def prone_i2i_similarity_tail(stage, candidate_type, start, end):
     print('开始读取数据！！！')
-    valid = load_validate(f'/home/niejianfei/otto/{stage}/data/test_parquet/*')
+    valid = load_validate(f'/home/kangqiman/otto/{stage}/data/test_parquet/*')
     print(valid)
     print('开始筛选')
 
@@ -565,11 +565,11 @@ def prone_i2i_similarity_tail(stage, candidate_type, start, end):
 
     print('开始读取词向量！！')
     proNE_last_month = gensim.models.KeyedVectors.load_word2vec_format(
-        f"/home/niejianfei/otto/{stage}/preprocess/proNE_last_month_enhanced.emb",
+        f"/home/kangqiman/otto/{stage}/preprocess/proNE_last_month_enhanced.emb",
         binary=False)
 
     print("开始读取aim_num映射文件！！！")
-    f_read = open(f'/home/niejianfei/otto/{stage}/preprocess/aid_num_dict.pkl', 'rb')
+    f_read = open(f'/home/kangqiman/otto/{stage}/preprocess/aid_num_dict.pkl', 'rb')
     aid_num_dict = pickle.load(f_read)
     f_read.close()
     print('输出', aid_num_dict[0])
@@ -579,7 +579,7 @@ def prone_i2i_similarity_tail(stage, candidate_type, start, end):
         # 只导入训练数据
         print('开始导入数据')
         for i in range(start, end):
-            path = f"/home/niejianfei/otto/{stage}/candidates/candidates_{t[0:-1]}_features_data/candidate_{t[0:-1]}_{i}.pqt"
+            path = f"/home/kangqiman/otto/{stage}/candidates/candidates_{t[0:-1]}_features_data/candidate_{t[0:-1]}_{i}.pqt"
             print(f'第{i + 1}块数据')
             chunk = pd.read_parquet(path)
             print(path)
@@ -643,19 +643,19 @@ def calculate_MF_similarity(string, array):
 # bpr,als,lmf,u2i相似度
 def bpr_als_lmf_u2i_similarity(stage, candidate_type, start, end):
     print('bpr')
-    bpr_user_emb = np.load(f'/home/niejianfei/otto/{stage}/preprocess/bpr_user_emb.npy')
-    bpr_item_emb = np.load(f'/home/niejianfei/otto/{stage}/preprocess/bpr_item_emb.npy')
+    bpr_user_emb = np.load(f'/home/kangqiman/otto/{stage}/preprocess/bpr_user_emb.npy')
+    bpr_item_emb = np.load(f'/home/kangqiman/otto/{stage}/preprocess/bpr_item_emb.npy')
     print('als')
-    als_user_emb = np.load(f'/home/niejianfei/otto/{stage}/preprocess/als_user_emb.npy')
-    als_item_emb = np.load(f'/home/niejianfei/otto/{stage}/preprocess/als_item_emb.npy')
+    als_user_emb = np.load(f'/home/kangqiman/otto/{stage}/preprocess/als_user_emb.npy')
+    als_item_emb = np.load(f'/home/kangqiman/otto/{stage}/preprocess/als_item_emb.npy')
     print('lmf')
-    lmf_user_emb = np.load(f'/home/niejianfei/otto/{stage}/preprocess/lmf_user_emb.npy')
-    lmf_item_emb = np.load(f'/home/niejianfei/otto/{stage}/preprocess/lmf_item_emb.npy')
+    lmf_user_emb = np.load(f'/home/kangqiman/otto/{stage}/preprocess/lmf_user_emb.npy')
+    lmf_item_emb = np.load(f'/home/kangqiman/otto/{stage}/preprocess/lmf_item_emb.npy')
 
     for t in candidate_type:
         print('开始导入数据')
         for i in range(start, end):
-            path = f"/home/niejianfei/otto/{stage}/candidates/candidates_{t[0:-1]}_features_data/candidate_{t[0:-1]}_{i}.pqt"
+            path = f"/home/kangqiman/otto/{stage}/candidates/candidates_{t[0:-1]}_features_data/candidate_{t[0:-1]}_{i}.pqt"
             print(f'第{i + 1}块数据')
             chunk = pd.read_parquet(path)
             print(path)
@@ -686,7 +686,7 @@ def bpr_als_lmf_u2i_similarity(stage, candidate_type, start, end):
 
 def bpr_als_lmf_i2i_similarity(stage, candidate_type, start, end):
     print('开始读取数据！！！')
-    valid = load_validate(f'/home/niejianfei/otto/{stage}/data/test_parquet/*')
+    valid = load_validate(f'/home/kangqiman/otto/{stage}/data/test_parquet/*')
     print(valid)
     print('开始筛选')
 
@@ -719,17 +719,17 @@ def bpr_als_lmf_i2i_similarity(stage, candidate_type, start, end):
     print(sentences_df1)
 
     print('bpr')
-    bpr_item_emb = np.load(f'/home/niejianfei/otto/{stage}/preprocess/bpr_item_emb.npy')
+    bpr_item_emb = np.load(f'/home/kangqiman/otto/{stage}/preprocess/bpr_item_emb.npy')
     print('als')
-    als_item_emb = np.load(f'/home/niejianfei/otto/{stage}/preprocess/als_item_emb.npy')
+    als_item_emb = np.load(f'/home/kangqiman/otto/{stage}/preprocess/als_item_emb.npy')
     print('lmf')
-    lmf_item_emb = np.load(f'/home/niejianfei/otto/{stage}/preprocess/lmf_item_emb.npy')
+    lmf_item_emb = np.load(f'/home/kangqiman/otto/{stage}/preprocess/lmf_item_emb.npy')
 
     for t in candidate_type:
         # 只导入训练数据
         print('开始导入数据')
         for i in range(start, end):
-            path = f"/home/niejianfei/otto/{stage}/candidates/candidates_{t[0:-1]}_features_data/candidate_{t[0:-1]}_{i}.pqt"
+            path = f"/home/kangqiman/otto/{stage}/candidates/candidates_{t[0:-1]}_features_data/candidate_{t[0:-1]}_{i}.pqt"
             print(f'第{i + 1}块数据')
             chunk = pd.read_parquet(path)
             print(path)
