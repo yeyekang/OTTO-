@@ -24,7 +24,7 @@ def load_train_data(t, semi_sessions):
     k = 0
     print('开始导入数据')
     for i in range(0, 8):
-        path = f"/home/niejianfei/otto/CV/candidates/candidates_{t[0:-1]}_features_data/candidate_{t[0:-1]}_{i}.pqt"
+        path = f"/home/kangqiman/otto/CV/candidates/candidates_{t[0:-1]}_features_data/candidate_{t[0:-1]}_{i}.pqt"
         print(f'第{i + 1}块数据')
         chunk = pd.read_parquet(path)
         print(path)
@@ -160,7 +160,7 @@ def train_xgb(candidate_type, semi_sessions, describe):
             importance_gain = model.get_score(fmap='', importance_type='gain')
             print('gain', importance_gain)
 
-            model.save_model(f'/home/niejianfei/otto/CV/models/xgb_fold{fold}_{t[0:-1]}_{describe}.xgb')
+            model.save_model(f'/home/kangqiman/otto/CV/models/xgb_fold{fold}_{t[0:-1]}_{describe}.xgb')
 
 
 # 预测
@@ -169,7 +169,7 @@ def xgb_inference(key, stage, t, semi_sessions, describe):
     dfs = []
     # 只导入训练数据
     for e, chunk_file in enumerate(
-            glob.glob(f"/home/niejianfei/otto/{stage}/candidates/candidates_{t[0:-1]}_features_data/*")):
+            glob.glob(f"/home/kangqiman/otto/{stage}/candidates/candidates_{t[0:-1]}_features_data/*")):
         print(f"第{e + 1}块数据！！！")
 
         chunk = pd.read_parquet(chunk_file)
@@ -199,7 +199,7 @@ def xgb_inference(key, stage, t, semi_sessions, describe):
 
             model = xgb.Booster()
             model.load_model(
-                f'/home/niejianfei/otto/CV/models/xgb_fold{fold}_{t[0:-1]}_{describe}.xgb')
+                f'/home/kangqiman/otto/CV/models/xgb_fold{fold}_{t[0:-1]}_{describe}.xgb')
             model.set_param({'predictor': 'gpu_predictor'})
             print("开始构建test数据集！！！")
             dtest = xgb.DMatrix(data=chunk[FEATURES])
@@ -234,20 +234,20 @@ def generate_submission(key, stage, candidate_type, semi_sessions, describe):
         sub.session_type = sub.session_type.astype('str') + f'_{t}'
         print(len(sub))
         print("开始写入本地！！！")
-        sub.to_parquet(f'/home/niejianfei/otto/{stage}/submission/sub_{t}.pqt')
+        sub.to_parquet(f'/home/kangqiman/otto/{stage}/submission/sub_{t}.pqt')
 
 
 def get_recall(key, candidate_type):
     for t in candidate_type:
         print("开始读取数据！！！")
-        pred_df = pd.read_parquet(f'/home/niejianfei/otto/CV/submission/sub_{t}.pqt')
+        pred_df = pd.read_parquet(f'/home/kangqiman/otto/CV/submission/sub_{t}.pqt')
         print(len(pred_df))
 
         sub = pred_df.loc[pred_df.session_type.str.contains(t)].copy()
         sub['session'] = sub.session_type.apply(lambda x: int(x.split('_')[0]))
         sub.labels = sub.labels.apply(lambda x: [int(i) for i in x.split(' ')])
         print("开始读取labels！！！")
-        test_labels = pd.read_parquet(f'/home/niejianfei/otto/CV/preprocess/test_labels.parquet')
+        test_labels = pd.read_parquet(f'/home/kangqiman/otto/CV/preprocess/test_labels.parquet')
         print(len(test_labels))
         print(len(pred_df) - len(pred_df))
         test_labels = test_labels.loc[test_labels['type'] == t]
@@ -268,7 +268,7 @@ def user_sample(frac):
 if __name__ == '__main__':
     # 抽取一半session计算recall
     random_state = 33
-    valid = load_data(f'/home/niejianfei/otto/CV/data/test_parquet/*')
+    valid = load_data(f'/home/kangqiman/otto/CV/data/test_parquet/*')
 
     candidate_type = ['clicks', 'carts', 'orders']
     describe = 'final'
