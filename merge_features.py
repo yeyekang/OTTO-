@@ -6,7 +6,7 @@ import pandas as pd
 
 
 def add_labels(candidate_type):
-    targets = pd.read_parquet('/home/niejianfei/otto/CV/preprocess/test_labels.parquet')
+    targets = pd.read_parquet('/home/kangqiman/otto/CV/preprocess/test_labels.parquet')
     for t in candidate_type:
         print("给data加标签！！！")
         # 加标签
@@ -18,7 +18,7 @@ def add_labels(candidate_type):
         # 只导入CV数据
         print('开始导入数据')
         for i in range(0, 8):
-            path = f"/home/niejianfei/otto/CV/candidates/candidates_{t[0:-1]}_features_data/candidate_{t[0:-1]}_{i}.pqt"
+            path = f"/home/kangqiman/otto/CV/candidates/candidates_{t[0:-1]}_features_data/candidate_{t[0:-1]}_{i}.pqt"
             print(f'第{i + 1}块数据')
             chunk = pd.read_parquet(path)
             print(path)
