@@ -60,26 +60,26 @@ train_df = load_data(f'/kaggle/input/otto-recommender-system/train.jsonl')
 print("开始读取co_visitation矩阵数据！！！")
 # LOAD THREE CO-VISITATION MATRICES
 top_20_clicks = pqt_to_dict(
-    pd.read_parquet(f'/home/niejianfei/otto/{stage}/preprocess/{data}top_20_clicks_v{VER}_0.pqt'))
+    pd.read_parquet(f'/home/kangqiman/otto/{stage}/preprocess/{data}top_20_clicks_v{VER}_0.pqt'))
 for k in range(1, DISK_PIECES):
     top_20_clicks.update(
         pqt_to_dict(
-            pd.read_parquet(f'/home/niejianfei/otto/{stage}/preprocess/{data}top_20_clicks_v{VER}_{k}.pqt')))
+            pd.read_parquet(f'/home/kangqiman/otto/{stage}/preprocess/{data}top_20_clicks_v{VER}_{k}.pqt')))
 top_20_buys = pqt_to_dict(
-    pd.read_parquet(f'/home/niejianfei/otto/{stage}/preprocess/{data}top_15_carts_orders_v{VER}_0.pqt'))
+    pd.read_parquet(f'/home/kangqiman/otto/{stage}/preprocess/{data}top_15_carts_orders_v{VER}_0.pqt'))
 for k in range(1, DISK_PIECES):
     top_20_buys.update(
         pqt_to_dict(
-            pd.read_parquet(f'/home/niejianfei/otto/{stage}/preprocess/{data}top_15_carts_orders_v{VER}_{k}.pqt')))
+            pd.read_parquet(f'/home/kangqiman/otto/{stage}/preprocess/{data}top_15_carts_orders_v{VER}_{k}.pqt')))
 top_20_buy2buy = pqt_to_dict(
-    pd.read_parquet(f'/home/niejianfei/otto/{stage}/preprocess/{data}top_15_buy2buy_v{VER}_0.pqt'))
+    pd.read_parquet(f'/home/kangqiman/otto/{stage}/preprocess/{data}top_15_buy2buy_v{VER}_0.pqt'))
 
 print('开始读取deepwalk词向量！！')
 word2vec_last_week = gensim.models.KeyedVectors.load_word2vec_format(
-    f'/home/niejianfei/otto/{stage}/preprocess/deepwalk_last_week.w2v',
+    f'/home/kangqiman/otto/{stage}/preprocess/deepwalk_last_week.w2v',
     binary=False)
 word2vec_last_month = gensim.models.KeyedVectors.load_word2vec_format(
-    f'/home/niejianfei/otto/{stage}/preprocess/deepwalk_last_month.w2v',
+    f'/home/kangqiman/otto/{stage}/preprocess/deepwalk_last_month.w2v',
     binary=False)
 
 # 基于规则，热门商品
@@ -407,7 +407,7 @@ carts_pred_df = pd.DataFrame(pred_df_carts.add_suffix("_carts"), columns=["label
 pred_df = pd.concat([clicks_pred_df, orders_pred_df, carts_pred_df])
 pred_df.columns = ["session_type", "labels"]
 pred_df["labels"] = pred_df.labels.apply(lambda x: " ".join(map(str, x)))
-pred_df.to_parquet(f'/home/niejianfei/otto/{stage}/candidates/candidates.pqt')
+pred_df.to_parquet(f'/home/kangqiman/otto/{stage}/candidates/candidates.pqt')
 print(pred_df)
 
 
@@ -420,7 +420,7 @@ for t in ['clicks', 'carts', 'orders']:
     sub['session'] = sub.session_type.apply(lambda x: int(x.split('_')[0]))
     # sub.labels = sub.labels.apply(lambda x: [int(i) for i in x.split(' ')])
     sub['labels'] = sub['labels'].apply(lambda x: [int(i.split('#')[0]) for i in x.split(' ')])
-    test_labels = pd.read_parquet(f'/home/niejianfei/otto/CV/preprocess/test_labels.parquet')
+    test_labels = pd.read_parquet(f'/home/kangqiman/otto/CV/preprocess/test_labels.parquet')
     test_labels = test_labels.loc[test_labels['type'] == t]
     test_labels = test_labels.merge(sub, how='left', on=['session'])
     test_labels['hits'] = test_labels.apply(
