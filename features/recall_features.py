@@ -5,7 +5,7 @@ import pandas as pd
 def recall_features(stage, candidate_type):
     type_transform = {"clicks": 0, "carts": 1, "orders": 2}
     print("开始导入数据！！！")
-    candidates = pd.read_parquet(f'/home/niejianfei/otto/{stage}/candidates/candidates.pqt')
+    candidates = pd.read_parquet(f'/home/kangqiman/otto/{stage}/candidates/candidates.pqt')
     print('candidate的长度为', len(candidates))
 
     print("开始处理candidates数据！！！")
@@ -60,7 +60,7 @@ def recall_features(stage, candidate_type):
             print(temp_df)
             candidates1 = candidates1.merge(temp_df, on=['session', 'aid', 'type'], how='outer').fillna(value=-1)
             print(candidates1)
-        candidates1.to_parquet(f'/home/niejianfei/otto/{stage}/candidates/candidates_{t}.pqt')
+        candidates1.to_parquet(f'/home/kangqiman/otto/{stage}/candidates/candidates_{t}.pqt')
         print('保存完毕')
 
 
