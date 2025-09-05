@@ -226,14 +226,14 @@ if __name__ == '__main__':
         stage = 'CV'
     else:
         stage = 'LB'
-    input_path = f'/home/niejianfei/otto/{stage}/data/test_parquet/*'
-    output_path = f'/home/niejianfei/otto/{stage}/preprocess/user_features.pqt'
-    output_path1 = f'/home/niejianfei/otto/{stage}/preprocess/add_user_features.pqt'
+    input_path = f'/home/kangqiman/otto/{stage}/data/test_parquet/*'
+    output_path = f'/home/kangqiman/otto/{stage}/preprocess/user_features.pqt'
+    output_path1 = f'/home/kangqiman/otto/{stage}/preprocess/add_user_features.pqt'
     user_features(input_path, output_path)
     add_user_features(input_path, output_path1)
 
-    input_path1 = f'/home/niejianfei/otto/{stage}/data/train_parquet/*'
-    output_path2 = f'/home/niejianfei/otto/{stage}/preprocess/click_cart_span_features.pqt'
-    output_path3 = f'/home/niejianfei/otto/{stage}/preprocess/click_order_span_features.pqt'
-    output_path4 = f'/home/niejianfei/otto/{stage}/preprocess/cart_order_span_features.pqt'
+    input_path1 = f'/home/kangqiman/otto/{stage}/data/train_parquet/*'
+    output_path2 = f'/home/kangqiman/otto/{stage}/preprocess/click_cart_span_features.pqt'
+    output_path3 = f'/home/kangqiman/otto/{stage}/preprocess/click_order_span_features.pqt'
+    output_path4 = f'/home/kangqiman/otto/{stage}/preprocess/cart_order_span_features.pqt'
     trans_time_span_features(input_path1, output_path2, output_path3, output_path4)
